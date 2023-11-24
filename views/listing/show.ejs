@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <a href="http://localhost:8080/">Back</a>
+    <div class="content">
+        <h3><%= data.title %></h3>
+        <p><%= data.description %></p>
+        <p>&#8377; <%=data.price.toLocaleString('en-IN') %></p>
+        <img src="<%=data.image %>" alt="">
+    </div>
+</body>
+</html>

@@ -8,7 +8,11 @@ const listingSchema = new Schema({
 
     },
     description:String,
-    image:String,
+    image:{
+        type:String,
+        default:"https://unsplash.com/photos/coconut-palm-trees-in-hotel-lobby-_dS27XGgRyQ",
+        set: (v)=> v ===""? "https://unsplash.com/photos/coconut-palm-trees-in-hotel-lobby-_dS27XGgRyQ":v,
+    },
     price:Number,
     location:String,
     country:String
