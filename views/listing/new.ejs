@@ -1,13 +1,40 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 <body>
-    <form method="post" action="/listing">
-        <input type="text" name="listing[title]" placeholder="enter villa name"><br><br>
-        <input type="text" name="listing[image]" placeholder="enter image url"><br><br>
-        <input type="number" name="listing[price]" placeholder="enter price"><br><br>
-        <input type="text" name="listing[location]" placeholder="enter location"><br><br>
-        <input type="text" name="listing[country]" placeholder="enter country"><br><br>
-        <textarea name="listing[description]" placeholder="Enter your description" id="" cols="30" rows="10"></textarea><br>
-        <button>Add your villa</button>
-    </form>
+    <br>
+   <div class="row">
+    <div class="col-8 offset-2">
+        <form method="post" action="/listing">
+            <div class="mb-3">
+                <label for="title" class="form-label">Enter your title</label>
+                <input type="text"  class="form-control" name="listing[title]" placeholder="enter villa name">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Enter your Image Link</label>
+                <input type="text" class="form-control" name="listing[image]" placeholder="enter image url">
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-2">
+                    <label for="price" class="form-label">Enter Price</label>
+                    <input type="number" name="listing[price]" placeholder="enter price" class="form-control">
+                </div>
+                <div class="col-md-5">
+                    <label for="location" class="form-label">Enter your Villa Location</label>
+                    <input type="text" name="listing[location]" placeholder="enter location" class="form-control">
+                </div>
+                <div class="col-md-5">
+                    <label for="country"  class="form-label">Enter your Villa Country</label>
+                    <input type="text" name="listing[country]" placeholder="enter country" class="form-control">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Enter your Description</label>
+                <textarea name="listing[description]" placeholder="Enter your description" id="" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+        
+            <button type="submit" class="btn btn-primary newBtn">Submit</button>
+        </form>
+    </div>
+   </div>
+   <br>
 </body>
 <% layout("/layouts/boilerplate.ejs") -%>

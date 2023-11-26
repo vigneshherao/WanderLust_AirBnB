@@ -1,5 +1,15 @@
 body{
     font-family: 'Plus Jakarta Sans', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+}
+.back-btn{
+    text-decoration: none;
+    color: black;
 }
 .content{
     margin: 100px auto;
@@ -135,4 +145,40 @@ nav{
     color: black;
     font-size: 1.2rem;
     opacity: 0.7;
+}
+.newBtn{
+    border: none !important;
+    background-color: rgb(248, 84, 84) !important;
+}
+
+
+/* -------------------------Show Page------------------------ */
+
+.top-view{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top-view h4{
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.top-view-btns{
+    display: flex;
+}
+.top-view-btns p{
+    margin-right: 10px;
+}
+.show-img{
+    height: 30vh;
+}
+.card-text p{
+    font-style: italic;
+}
+.btns button{
+    background-color: tomato;
+    color: white;
+    border: none;
+    height: 2rem;
+    border-radius: 10px;
 }

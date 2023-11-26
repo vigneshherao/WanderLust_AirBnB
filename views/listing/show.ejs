@@ -1,10 +1,41 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 <body>
-    <a href="http://localhost:8080/">Back</a>
-    <div class="content">
-        <h3><%= data.title %></h3>
-        <p><%= data.description %></p>
-        <p>&#8377; <%=data.price.toLocaleString('en-IN') %></p>
-        <img src="<%=data.image %>" alt="">
+    <a href="http://localhost:8080/" class="back-btn"><i class="fa-solid fa-arrow-left"></i>&nbsp Back </a>
+    <div class="row mt-2">
+        <div class="col-10 offset-1">
+                <!-- <div class="content">
+                    <h3><%= data.title %></h3>
+                    <p><%= data.description %></p>
+                    <p>&#8377; <%=data.price.toLocaleString('en-IN') %></p>
+                    <img src="<%=data.image %>" alt="">
+                </div> -->
+                <div class="top-view">
+                    <h4><%= data.title %></h4>
+                    <div class="top-view-btns">
+                        <p><i class="fa-regular fa-share-from-square"></i> &nbsp share</p>
+                        <p><i class="fa-solid fa-heart"></i> &nbsp  save</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-10 offset-1" >
+                <img src="<%=data.image %>" class="card-img-top show-img" alt="...">
+                <div class="card-body">
+                  <div class="card-text">
+                    <br>
+                    <b><%= data.title  %></b><br>
+                     &#8377; <%=data.price.toLocaleString('en-IN') %>
+                     &nbsp <p style="color: tomato; display: inline-block;"><%=data.location %> , <%= data.country %></p>
+                     <div class="col-12 card-text">
+                        <p><%=data.description %></p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed repudiandae architecto eius magnam dicta ab doloribus reprehenderit, nobis dolorem impedit quod, ipsum, repellendus debitis numquam.</p>
+                     </div>
+                  </div>
+                </div>
+                <div class="btns col-6">
+                    
+                    <button><a style="text-decoration: none; color: white;" href="http://localhost:8080/listing/edit/<%=data._id %>">Edit</a></button>
+                    <button>Delete</button>
+                </div>
+            </div>
     </div>
 </body>

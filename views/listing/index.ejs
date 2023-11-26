@@ -1,9 +1,8 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 <body>
-    <h2>ALL VILLAS HERE</h2> 
-    <h4><a href="http://localhost:8080/listing/new">Add new List</a></h4>
-
-
+    <div class="row">
+        <h2>ALL VILLAS HERE</h2> 
+    </div>
     <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 row-cols-sm-1">
         <% for(data of datas){ %>
            <a href="http://localhost:8080/show/<%=data._id%>" class="post-link">
@@ -15,6 +14,7 @@
                 <div class="card-body">
                   <p class="card-text">
                    <b> <%= data.title %></b> <br>
+                   <%=data.location %> <br>
                     &#8377; <%=data.price.toLocaleString('en-IN') %> / night
                 </p>
                 </div>
@@ -24,7 +24,7 @@
     </div>
     <ul>
         <% for(data of datas){ %>
-            <li><a href="http://localhost:8080/show/<%=data._id%>"><%=data.title%></a> &nbsp; <a  href="http://localhost:8080/listing/edit/<%=data._id %>">Edit</a></li>
+            <li><a href="http://localhost:8080/show/<%=data._id%>"><%=data.title%></a> &nbsp; <a  href=>Edit</a></li>
         <% } %>
     </ul>
 
