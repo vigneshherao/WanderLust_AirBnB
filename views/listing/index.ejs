@@ -2,9 +2,30 @@
 <body>
     <h2>ALL VILLAS HERE</h2> 
     <h4><a href="http://localhost:8080/listing/new">Add new List</a></h4>
+
+
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 row-cols-sm-1">
+        <% for(data of datas){ %>
+           <a href="http://localhost:8080/show/<%=data._id%>" class="post-link">
+            <div class="card col">
+                <img class="card-img-top" src="<%= data.image %>" alt="Card image cap"  style="height: 19.1rem;">
+                <div class="card-img-overlay">
+                    <i class="fa-regular fa-heart fa-fade" style="color: #ff1f1f;"></i>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                   <b> <%= data.title %></b> <br>
+                    &#8377; <%=data.price.toLocaleString('en-IN') %> / night
+                </p>
+                </div>
+              </div>
+           </a>
+         <% } %>
+    </div>
     <ul>
         <% for(data of datas){ %>
             <li><a href="http://localhost:8080/show/<%=data._id%>"><%=data.title%></a> &nbsp; <a  href="http://localhost:8080/listing/edit/<%=data._id %>">Edit</a></li>
         <% } %>
     </ul>
+
 </body>
