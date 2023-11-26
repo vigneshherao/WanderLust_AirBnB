@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME: ALL LIST</title>
-</head>
+<% layout("/layouts/boilerplate.ejs") -%>
 <body>
     <h2>ALL VILLAS HERE</h2> 
     <h4><a href="http://localhost:8080/listing/new">Add new List</a></h4>
     <ul>
         <% for(data of datas){ %>
-            <li><a href="http://localhost:8080/show/<%=data._id%>"><%=data.title%></a></li>
+            <li><a href="http://localhost:8080/show/<%=data._id%>"><%=data.title%></a> &nbsp; <a  href="http://localhost:8080/listing/edit/<%=data._id %>">Edit</a></li>
         <% } %>
     </ul>
 </body>
-</html>

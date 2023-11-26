@@ -1,0 +1,9 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+<body>
+    <form method="post" action="/listing/<%=data._id%>?_method=PUT">
+        <label for="name"><%=data.title %></label><br>
+        <input type="number" name="listing[price]" placeholder="enter price"><br><br>
+        <textarea name="listing[description]" placeholder="Enter your description" id="" cols="30" rows="10"></textarea><br>
+        <button>Add your villa</button>
+    </form>
+</body>
