@@ -64,13 +64,17 @@ app.get("/listing/edit/:id",async(req,res)=>{
 
 
 
-app.put("/lising/edit/:id",(req,res)=>{
+app.put("/listing/edit/:id",async(req,res)=>{
     let {id} = req.params;
-    let{price:newPrice,description:newDesc} = req.body;
-    Listing.findByIdAndUpdate(id,...req.body.listing).then((res)=>{
-        console.log(res);
-    }).catch((err)=>{
-        console.log(err);
-    })
-    res.redirect("");
+    await Listing.findByIdAndUpdate(id,{...req.body.listing});
+    res.redirect("/");
 })
+
+
+app.delete("/listing/delete/:id",async (req,res)=>{
+    let {id} = req.params;
+    let deleteListing = await Listing.findByIdAndDelete(id);
+    console.log(deleteListing);
+    res.redirect("/");
+})
+

@@ -3,12 +3,6 @@
     <a href="http://localhost:8080/" class="back-btn"><i class="fa-solid fa-arrow-left"></i>&nbsp Back </a>
     <div class="row mt-2">
         <div class="col-10 offset-1">
-                <!-- <div class="content">
-                    <h3><%= data.title %></h3>
-                    <p><%= data.description %></p>
-                    <p>&#8377; <%=data.price.toLocaleString('en-IN') %></p>
-                    <img src="<%=data.image %>" alt="">
-                </div> -->
                 <div class="top-view">
                     <h4><%= data.title %></h4>
                     <div class="top-view-btns">
@@ -23,18 +17,33 @@
                   <div class="card-text">
                     <br>
                     <b><%= data.title  %></b><br>
-                     &#8377; <%=data.price.toLocaleString('en-IN') %>
-                     &nbsp <p style="color: tomato; display: inline-block;"><%=data.location %> , <%= data.country %></p>
+                     &#8377;<% if (data.price !==null && data.price !==undefined) { %>
+                              &#8377; <%= data.price.toLocaleString('en-IN') %> / night
+                            <% } else { %>
+                                Price not available
+                            <% } %>
+                            <br>
+                      <p style="color: tomato; display: inline-block;"><%=data.location %> , <%= data.country %></p>
                      <div class="col-12 card-text">
                         <p><%=data.description %></p>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed repudiandae architecto eius magnam dicta ab doloribus reprehenderit, nobis dolorem impedit quod, ipsum, repellendus debitis numquam.</p>
+                        <p><b>About this space</b><br>
+                            The elegant 4 bedrooms beach house is located on the coasts of Mangalore and equipped with luxurious interiors and sprawling lawn, a perfect gateway from the hustle and bustle of the city.
+                            The space
+                            <br>
+                            <b> Reasons, why the place is a, must-visit:</b>
+                            <br>
+                            1. The bright, plush and exclusive property is a perfect gateway with your family and friends from the maddening city life. The interiors are decored with modern amenities and sophisticated décor and the villa opens up to the pristine beach of surathkal, giving it one of the most breath-taking views from all angles. <br>
+                            2. Located a stone's throw away from the beach, the property adds a beautiful touch to the villa. One can fall asleep to the sound of crashing waves and wake up to the chirping of birds. It's picturesque surrounding perfectly blends into the elegant villa, making it one of the most beautiful and relaxing vacations of your lifetime. <br>
+                            3. The coast of Surathkal is famous for its coastal cuisine, the surrounding area is swamped with delicious restaurants. One can relish on the authentic local cuisine during the day and spend the night overlooking the pristine beach <br>
                      </div>
                   </div>
                 </div>
                 <div class="btns col-6">
-                    
                     <button><a style="text-decoration: none; color: white;" href="http://localhost:8080/listing/edit/<%=data._id %>">Edit</a></button>
-                    <button>Delete</button>
+                    <form method="post" action="/listing/delete/<%=data._id%>?_method=DELETE">
+                        <br>
+                        <button>Delete</button>
+                    </form>
                 </div>
             </div>
     </div>

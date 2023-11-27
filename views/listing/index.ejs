@@ -13,19 +13,17 @@
                 </div>
                 <div class="card-body">
                   <p class="card-text">
-                   <b> <%= data.title %></b> <br>
-                   <%=data.location %> <br>
-                    &#8377; <%=data.price.toLocaleString('en-IN') %> / night
+                    <b><%= data.title %></b> <br>
+                    <%= data.location %> <br>
+                    <% if (data.price !== null && data.price !== undefined) { %>
+                        &#8377; <%= data.price.toLocaleString('en-IN') %> / night
+                    <% } else { %>
+                        Price not available
+                    <% } %>
                 </p>
                 </div>
               </div>
            </a>
          <% } %>
     </div>
-    <ul>
-        <% for(data of datas){ %>
-            <li><a href="http://localhost:8080/show/<%=data._id%>"><%=data.title%></a> &nbsp; <a  href=>Edit</a></li>
-        <% } %>
-    </ul>
-
 </body>
