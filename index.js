@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,"public/css")));
+app.use(express.static(path.join(__dirname,"public/js")));
 app.use(methodOverride('_method'))
 
 
@@ -76,8 +77,4 @@ app.delete("/listing/delete/:id",async (req,res)=>{
     let deleteListing = await Listing.findByIdAndDelete(id);
     console.log(deleteListing);
     res.redirect("/");
-})
-
-app.use((req,res)=>{
-    res.send("404 not found");
 })

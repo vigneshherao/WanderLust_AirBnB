@@ -3,7 +3,7 @@
     <br>
    <div class="row">
     <div class="col-8 offset-2">
-        <form method="post" action="/listing">
+        <form method="post" action="/listing" novalidate class="needs-validation" >
             <div class="mb-3">
                 <label for="title" class="form-label">Enter your title</label>
                 <input type="text" required  class="form-control" name="listing[title]" placeholder="enter villa name">
@@ -36,5 +36,25 @@
     </div>
    </div>
    <br>
+   <script>
+    (() => {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+  
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+   </script>
 </body>
 <% layout("/layouts/boilerplate.ejs") -%>
