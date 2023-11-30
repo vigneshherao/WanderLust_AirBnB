@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing");
 const path = require("path");
 const methodOverride = require('method-override')
-const engine = require('ejs-mate')
+const engine = require('ejs-mate');
+const { hostname } = require("os");
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
@@ -27,7 +28,6 @@ main().then(()=>{
 app.listen(port,()=>{
     console.log(`server is started with port number ${port}`);
 })
-
 
 app.get("/",async(req,res)=>{
     let datas = await Listing.find();
@@ -78,3 +78,6 @@ app.delete("/listing/delete/:id",async (req,res)=>{
     res.redirect("/");
 })
 
+app.use((req,res)=>{
+    res.send("404 not found");
+})
