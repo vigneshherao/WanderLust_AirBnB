@@ -6,29 +6,50 @@
         <form method="post" action="/listing" novalidate class="needs-validation" >
             <div class="mb-3">
                 <label for="title" class="form-label">Enter your title</label>
-                <input type="text" required  class="form-control" name="listing[title]" placeholder="enter villa name">
+                <input type="text" required  class="form-control" name="listing[title]" placeholder="Enter villa name">
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Title name is required.
+                  </div>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Enter your Image Link</label>
-                <input type="text"required class="form-control" name="listing[image]" placeholder="enter image url">
+                <input type="text" required class="form-control" name="listing[image]" placeholder="Enter image url">
+                <div class="invalid-feedback">
+                    Please add image url
+                  </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-2">
                     <label for="price" class="form-label">Enter Price</label>
-                    <input type="number" required name="listing[price]" placeholder="enter price" class="form-control">
+                    <input type="text" required name="listing[price]" placeholder="Enter price" class="form-control">
+                    <div class="invalid-feedback">
+                        Please add Price
+                      </div>
                 </div>
                 <div class="col-md-5">
                     <label for="location" class="form-label">Enter your Villa Location</label>
-                    <input type="text" required name="listing[location]" placeholder="enter location" class="form-control">
+                    <input type="text" required name="listing[location]" placeholder="Enter location" class="form-control">
+                    <div class="invalid-feedback">
+                        Please add your location
+                      </div>
                 </div>
                 <div class="col-md-5">
                     <label for="country"  class="form-label">Enter your Villa Country</label>
-                    <input type="text" required name="listing[country]" placeholder="enter country" class="form-control">
+                    <input type="text" required name="listing[country]" placeholder="Enter country" class="form-control">
+                    <div class="invalid-feedback">
+                        Please add your country
+                      </div>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Enter your Description</label>
                 <textarea name="listing[description]" required placeholder="Enter your description" id="" cols="30" rows="10" class="form-control"></textarea>
+                <div class="invalid-feedback">
+                    Please add description
+                  </div>
             </div>
         
             <button type="submit" class="btn btn-primary newBtn">Submit</button>
@@ -36,25 +57,5 @@
     </div>
    </div>
    <br>
-   <script>
-    (() => {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-  
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-      form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-  
-        form.classList.add('was-validated')
-      }, false)
-    })
-  })()
-   </script>
 </body>
 <% layout("/layouts/boilerplate.ejs") -%>

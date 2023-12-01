@@ -7,12 +7,12 @@ const path = require("path");
 const methodOverride = require('method-override')
 const engine = require('ejs-mate');
 const { hostname } = require("os");
+const wrapAsync = require("./utils/wrapAsync.js")
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname,"public/css")));
-app.use(express.static(path.join(__dirname,"public/js")));
+app.use(express.static(path.join(__dirname,"public")));
 app.use(methodOverride('_method'))
 
 
@@ -46,14 +46,11 @@ app.get("/listing/new",(req,res)=>{
     res.render("listing/new.ejs");
 })
 
-app.post("/listing",(req,res)=>{
-    let listing =  new Listing(req.body.listing);
-    listing.save().then((res)=>{
-    }).catch((err)=>{
-        console.log(err);
-    })
+app.post("/listing",wrapAsync(async(req,res,next)=>{
+    let listing = new Listing(req.body.listing);
+    await listing.save();
     res.redirect("/");
-})
+}))
 
 
 
@@ -77,4 +74,9 @@ app.delete("/listing/delete/:id",async (req,res)=>{
     let deleteListing = await Listing.findByIdAndDelete(id);
     console.log(deleteListing);
     res.redirect("/");
+})
+
+
+app.use((err,req,res,next)=>{
+    res.send(err.message);
 })
