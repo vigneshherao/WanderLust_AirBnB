@@ -89,5 +89,5 @@ app.get("*",(req,res,next)=>{
 
 app.use((err,req,res,next)=>{
     let {statusCode = 500, message = "Something error has been occured"} = err;
-    res.status(statusCode).send(message);
+    res.status(statusCode).render("error.ejs",{err});
 })
