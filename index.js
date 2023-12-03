@@ -9,6 +9,7 @@ const engine = require('ejs-mate');
 const { hostname } = require("os");
 const wrapAsync = require("./utils/wrapAsync.js")
 const expressError = require("./utils/expressError.js")
+const listingValidate = require("./schemaValidation.js");
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
@@ -16,6 +17,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(methodOverride('_method'))
 
+const serverValidate = (req,res,next)=>{
+    let {error} = listingValidate.validate(req.body);
+    if(error){
+        throw new expressError(400,error);
+    }
+    else{
+        next();
+    }
+}
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
@@ -47,10 +57,7 @@ app.get("/listing/new",(req,res)=>{
     res.render("listing/new.ejs");
 })
 
-app.post("/listing",wrapAsync(async(req,res,next)=>{
-    if(!req.body.listing){
-        throw new expressError(400,"Please add valid data!");
-    }
+app.post("/listing", serverValidate ,wrapAsync(async(req,res,next)=>{
     let listing = new Listing(req.body.listing);
     await listing.save();
     res.redirect("/");
