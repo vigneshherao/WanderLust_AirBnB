@@ -45,6 +45,22 @@
                         <button>Delete</button>
                     </form>
                 </div>
+
+                <div class="col-12">
+                    <hr>
+                    <form action="/listings/<%=data._id%>/reviews"  method="post">
+                        <div class="review col-10 offset-1">
+                            <label for="review" class="form-label">Leave a Review 1-5</label>
+                            <input type="range" class="form-range" min="1" max="5" id="rating" name="review[review]"> 
+                           </div>
+                           <div class="review col-10 offset-1">
+                            <label for="comments" class="form-label">Comments</label>
+                            <textarea name="review[comments]" id="comments" class="form-control" cols="30" rows="3"></textarea>
+                            <br>
+                            <button class="btn btn-dark" type="submit">Submit</button>
+                           </div>
+                    </form>
+                </div>
             </div>
     </div>
 </body>

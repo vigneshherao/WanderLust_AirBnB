@@ -3,6 +3,7 @@ const app = express();
 const port = 8080;
 const mongoose = require("mongoose");
 const Listing = require("./models/listing");
+const Review = require("./models/review.js");
 const path = require("path");
 const methodOverride = require('method-override')
 const engine = require('ejs-mate');
@@ -72,6 +73,17 @@ app.get("/listing/edit/:id",wrapAsync(async(req,res)=>{
 }));
 
 
+//Reviews
+
+app.post("/listings/:id/reviews",async (req,res)=>{
+    let listing = await Listing.findById(req.params.id);
+    console.log(listing);
+    let newReview = new Review(req.body.review);
+    listing.reviews.push(newReview);
+    await newReview.save();
+    await listing.save();
+    res.redirect(`http://localhost:8080/show/${listing._id}`);
+})
 
 app.put("/listing/edit/:id",wrapAsync(async(req,res)=>{
     if(!req.body.listing){
@@ -89,6 +101,8 @@ app.delete("/listing/delete/:id",wrapAsync(async (req,res)=>{
     console.log(deleteListing);
     res.redirect("/");
 }));
+
+
 
 app.get("*",(req,res,next)=>{
     next(new expressError(404,"Page Not Found!"));
