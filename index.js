@@ -10,7 +10,7 @@ const engine = require('ejs-mate');
 const { hostname } = require("os");
 const wrapAsync = require("./utils/wrapAsync.js")
 const expressError = require("./utils/expressError.js")
-const listingValidate = require("./schemaValidation.js");
+const {listingValidate,reviewSchema} = require("./schemaValidation.js");
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
@@ -20,6 +20,16 @@ app.use(methodOverride('_method'))
 
 const serverValidate = (req,res,next)=>{
     let {error} = listingValidate.validate(req.body);
+    if(error){
+        throw new expressError(400,error);
+    }
+    else{
+        next();
+    }
+}
+
+const validateReview = (req,res,next)=>{
+    let {error} = reviewSchema.validate(req.body);
     if(error){
         throw new expressError(400,error);
     }
@@ -75,15 +85,14 @@ app.get("/listing/edit/:id",wrapAsync(async(req,res)=>{
 
 //Reviews
 
-app.post("/listings/:id/reviews",async (req,res)=>{
+app.post("/listings/:id/reviews",validateReview,wrapAsync(async (req,res)=>{
     let listing = await Listing.findById(req.params.id);
-    console.log(listing);
     let newReview = new Review(req.body.review);
     listing.reviews.push(newReview);
     await newReview.save();
     await listing.save();
     res.redirect(`http://localhost:8080/show/${listing._id}`);
-})
+}));
 
 app.put("/listing/edit/:id",wrapAsync(async(req,res)=>{
     if(!req.body.listing){
