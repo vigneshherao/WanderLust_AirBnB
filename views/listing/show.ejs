@@ -17,7 +17,7 @@
                   <div class="card-text">
                     <br>
                     <b><%= data.title  %></b><br>
-                     &#8377;<% if (data.price !==null && data.price !==undefined) { %>
+                      <% if (data.price !==null && data.price !==undefined) { %>
                               &#8377; <%= data.price.toLocaleString('en-IN') %> / night
                             <% } else { %>
                                 Price not available
