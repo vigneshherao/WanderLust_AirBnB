@@ -60,7 +60,8 @@ app.get("/",wrapAsync(async(req,res)=>{
 
 app.get("/show/:id",wrapAsync(async (req,res)=>{
     let {id} = req.params;
-    let data =await Listing.findById(id);
+    let data =await Listing.findById(id).populate("reviews");
+    console.log(data);
     res.render("listing/show.ejs",{data});
 }));
 
@@ -109,6 +110,14 @@ app.delete("/listing/delete/:id",wrapAsync(async (req,res)=>{
     let deleteListing = await Listing.findByIdAndDelete(id);
     console.log(deleteListing);
     res.redirect("/");
+}));
+
+app.delete("/listing/:id/reviews/:reviewId",wrapAsync(async (req,res)=>{
+    let{id,reviewId} = req.params;
+    await Listing.findByIdAndUpdate(id,{$pull : {reviews:reviewId}});
+    let result = await Review.findByIdAndDelete(reviewId);
+    res.redirect(`http://localhost:8080/show/${id}`);
+   
 }));
 
 

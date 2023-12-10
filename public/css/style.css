@@ -182,3 +182,7 @@ nav{
     height: 2rem;
     border-radius: 10px;
 }
+.reviews-cards i{
+    color:rgb(255, 223, 0);
+    font-size: 13px;
+}
