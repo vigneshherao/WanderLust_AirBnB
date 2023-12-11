@@ -13,13 +13,26 @@ const expressError = require("./utils/expressError.js")
 const {listingValidate,reviewSchema} = require("./schemaValidation.js");
 const listing = require("./routes/listing.js");
 const review = require("./routes/review.js")
+const session = require('express-session')
+const flash = require('connect-flash');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(methodOverride('_method'))
+app.use(session({
+    secret: 'keyboardmouse',
+    resave: false,
+    saveUninitialized: true,
+    cookie:{
+        expires:Date.now()*7*24*60*60*1000,
+        maxAge:7*24*60*60*1000,
+        httpOnly:true
+    }
+  }));
 
+app.use(flash());
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
@@ -31,6 +44,11 @@ main().then(()=>{
 
 app.listen(port,()=>{
     console.log(`server is started with port number ${port}`);
+})
+
+app.use((req,res,next)=>{
+    res.locals.message = req.flash("sucess");
+    next();
 })
 
 app.use("/listing",listing);

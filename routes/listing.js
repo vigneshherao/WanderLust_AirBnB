@@ -33,6 +33,7 @@ router.get("/new",(req,res)=>{
 router.post("/", serverValidate ,wrapAsync(async(req,res,next)=>{
     let listing = new Listing(req.body.listing);
     await listing.save();
+    req.flash("sucess","New villa has be created");
     res.redirect("/listing");
 }))
 
