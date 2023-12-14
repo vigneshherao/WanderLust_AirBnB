@@ -11,10 +11,14 @@ const { hostname } = require("os");
 const wrapAsync = require("./utils/wrapAsync.js")
 const expressError = require("./utils/expressError.js")
 const {listingValidate,reviewSchema} = require("./schemaValidation.js");
-const listing = require("./routes/listing.js");
-const review = require("./routes/review.js")
+const listingRouter  = require("./routes/listing.js");
+const reviewRouter  = require("./routes/review.js")
+const userRouter = require("./routes/user.js")
 const session = require('express-session')
 const flash = require('connect-flash');
+const passport = require("passport");
+const LocalStratagy = require("passport-local");
+const User = require('./models/user.js');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
@@ -33,6 +37,12 @@ app.use(session({
   }));
 
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStratagy(User.authenticate));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
@@ -52,9 +62,21 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.use("/listing",listing);
+app.get("/demo",async (req,res)=>{
+    const fakeUser = new User({
+        email:"vignesh@gmail.com",
+        username:"vignesh123",
+    })
 
-app.use("/listings/:id/reviews",review);
+    let userCreated = await User.register(fakeUser,"hello");
+    res.send(userCreated);
+})
+
+app.use("/listing",listingRouter );
+
+app.use("/listings/:id/reviews",reviewRouter );
+
+app.use("/",userRouter );
 
 app.get("*",(req,res,next)=>{
     next(new expressError(404,"Page Not Found!"));
