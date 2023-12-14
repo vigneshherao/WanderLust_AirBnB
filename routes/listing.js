@@ -23,6 +23,10 @@ router.get("/",wrapAsync(async(req,res)=>{
 router.get("/show/:id",wrapAsync(async (req,res)=>{
     let {id} = req.params;
     let data =await Listing.findById(id).populate("reviews");
+    if(!data){
+        req.flash("error","This Listing is does not exit!");
+        res.redirect("/listing");
+    }
     res.render("listing/show.ejs",{data});
 }));
 
@@ -40,6 +44,10 @@ router.post("/", serverValidate ,wrapAsync(async(req,res,next)=>{
 router.get("/edit/:id",wrapAsync(async(req,res)=>{
     let {id} = req.params;
     let data =await Listing.findById(id);
+    if(!data){
+        req.flash("error","This Listing is does not exit!");
+        res.redirect("/listing");
+    }
     res.render("listing/edit.ejs",{data})
 }));
 
@@ -49,6 +57,7 @@ router.put("/edit/:id",wrapAsync(async(req,res)=>{
     }
     let {id} = req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
+    req.flash("sucess","Villa has been updated!");
     res.redirect("/listing");
 }));
 
@@ -56,6 +65,7 @@ router.put("/edit/:id",wrapAsync(async(req,res)=>{
 router.delete("/delete/:id",wrapAsync(async (req,res)=>{
     let {id} = req.params;
     let deleteListing = await Listing.findByIdAndDelete(id);
+    req.flash("sucess","Villa has been Deleted!");
     res.redirect("/listing");
 }));
 

@@ -72,7 +72,7 @@
                                     <div class="card-body">
                                       <h6 class="card-title">Vignesh H E &nbsp; <span><i class="fa-sharp fa-solid fa-star">&nbsp;<%=reviews.rating%></i></span></h6>
                                       <p class="card-text"><%=reviews.comments%></p>
-                                      <form action="/listing/<%=data._id %>/reviews/<%=reviews._id %>?_method=DELETE" method="post">
+                                      <form action="/listings/<%=data._id %>/reviews/<%=reviews._id %>?_method=DELETE" method="post">
                                         <button class="btn btn-white" style="border: 1px solid black;">delete</button>
                                       </form>
                                     </div>
