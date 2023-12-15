@@ -2,23 +2,23 @@
 <body>
     <div class="row">
         <div class="col-8 offset-2">
-            <form action="/login" method="post" novalidate class="needs-validation" >
+            <form method="post" action="/login" class="needs-validation" >
                 <div class="mb-3">
-                    <label for="name" class="form-label">Enter your Username</label>
+                    <label for="name" class="form-label">Enter your username</label>
                     <input type="text" required class="form-control" name="username">
                     <div class="invalid-feedback">
                         Username is required
                       </div>
                 </div>
                 <div class="mb-3">
-                    <label for="name" class="form-label">Enter your Password</label>
+                    <label for="password" class="form-label">Enter your Password</label>
                     <input type="password" required class="form-control" name="password">
                     <div class="invalid-feedback">
                         Password is required
                       </div>
                 </div>
             
-                <button type="submit" class="btn btn-primary newBtn">Submit</button>
+                <button type="submit" class="btn btn-primary newBtn">Login</button>
             </form>
         </div>
        </div>

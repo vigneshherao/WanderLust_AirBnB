@@ -32,19 +32,14 @@ router.get("/login", (req, res) => {
   res.render("user/login.ejs");
 });
 
-router.post(
-  "/login",
-    passport.authenticate("local", {
-      failureRedirect: "/login",
-      failureFlash: true,
-    }),
-    async (req, res) => {
-       try {
-        req.flash("sucess","welcome");
-       } catch (error) {
-        console.log(error);
-       }
-    }
-);
+router.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login',failureFlash:true }),
+  async(req, res)=>{
+    req.flash('sucess',"Logged in successfully!");
+    res.redirect("/listing");
+  });
+
+
+
 
 module.exports = router;

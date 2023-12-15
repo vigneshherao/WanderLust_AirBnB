@@ -2,15 +2,10 @@ const express = require("express");
 const app = express();
 const port = 8080;
 const mongoose = require("mongoose");
-const Listing = require("./models/listing");
-const Review = require("./models/review.js");
 const path = require("path");
 const methodOverride = require('method-override')
 const engine = require('ejs-mate');
-const { hostname } = require("os");
-const wrapAsync = require("./utils/wrapAsync.js")
 const expressError = require("./utils/expressError.js")
-const {listingValidate,reviewSchema} = require("./schemaValidation.js");
 const listingRouter  = require("./routes/listing.js");
 const reviewRouter  = require("./routes/review.js")
 const userRouter = require("./routes/user.js")
@@ -19,12 +14,17 @@ const flash = require('connect-flash');
 const passport = require("passport");
 const LocalStratagy = require("passport-local");
 const User = require('./models/user.js');
+
+
+
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(methodOverride('_method'))
+
+
 app.use(session({
     secret: 'keyboardmouse',
     resave: false,
@@ -37,10 +37,10 @@ app.use(session({
   }));
 
 app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStratagy(User.authenticate));
-
+passport.use(new LocalStratagy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -60,16 +60,6 @@ app.use((req,res,next)=>{
     res.locals.sucess = req.flash("sucess");
     res.locals.error = req.flash("error");
     next();
-})
-
-app.get("/demo",async (req,res)=>{
-    const fakeUser = new User({
-        email:"vignesh@gmail.com",
-        username:"vignesh123",
-    })
-
-    let userCreated = await User.register(fakeUser,"hello");
-    res.send(userCreated);
 })
 
 app.use("/listing",listingRouter );
