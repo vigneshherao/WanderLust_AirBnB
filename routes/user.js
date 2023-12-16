@@ -10,7 +10,7 @@ router.get("/signup", (req, res) => {
 
 router.post(
   "/signup",
-  wrapAsync(async (req, res) => {
+  wrapAsync(async (req, res,next) => {
     try {
       let { username, email, password } = req.body;
       const newUser = new User({
@@ -18,9 +18,13 @@ router.post(
         username,
       });
       const createdUser = await User.register(newUser, password);
-      console.log(createdUser);
-      req.flash("sucess", "Welcome to WanderLust!");
-      res.redirect("/listing");
+      req.login(createdUser,(err)=>{
+        if(err){
+          next(err);
+        }
+        req.flash("sucess", "Welcome to WanderLust!");
+        res.redirect("/listing");
+      })
     } catch (error) {
       req.flash("error", "A user with same name or email is registered!");
       res.redirect("/signup");
@@ -35,7 +39,8 @@ router.get("/login", (req, res) => {
 router.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login',failureFlash:true }),
   async(req, res)=>{
-    req.flash('sucess',"Logged in successfully!");
+    let name = req.user.username;
+    req.flash('sucess',`Welcome to wanderlust ${name} !`);
     res.redirect("/listing");
   });
 
