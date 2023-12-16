@@ -23,7 +23,7 @@ router.get("/",wrapAsync(async(req,res)=>{
 
 router.get("/show/:id",wrapAsync(async (req,res)=>{
     let {id} = req.params;
-    let data =await Listing.findById(id).populate("reviews");
+    let data =await Listing.findById(id).populate("reviews").populate("owner");
     if(!data){
         req.flash("error","This Listing is does not exit!");
         res.redirect("/listing");
@@ -37,6 +37,7 @@ router.get("/new",isLoggedIn,(req,res)=>{
 
 router.post("/",isLoggedIn,serverValidate ,wrapAsync(async(req,res,next)=>{
     let listing = new Listing(req.body.listing);
+    listing.owner = req.user._id;
     await listing.save();
     req.flash("sucess","New villa has be created");
     res.redirect("/listing");
