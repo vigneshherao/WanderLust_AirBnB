@@ -4,6 +4,7 @@ const Listing = require("../models/listing");
 const wrapAsync = require("../utils/wrapAsync.js")
 const expressError = require("../utils/expressError.js")
 const {listingValidate} = require("../schemaValidation.js");
+const {isLoggedIn} = require("../middleware/isLoggedIn.js")
 
 const serverValidate = (req,res,next)=>{
     let {error} = listingValidate.validate(req.body);
@@ -30,18 +31,18 @@ router.get("/show/:id",wrapAsync(async (req,res)=>{
     res.render("listing/show.ejs",{data});
 }));
 
-router.get("/new",(req,res)=>{
+router.get("/new",isLoggedIn,(req,res)=>{
     res.render("listing/new.ejs");
 })
 
-router.post("/", serverValidate ,wrapAsync(async(req,res,next)=>{
+router.post("/",isLoggedIn,serverValidate ,wrapAsync(async(req,res,next)=>{
     let listing = new Listing(req.body.listing);
     await listing.save();
     req.flash("sucess","New villa has be created");
     res.redirect("/listing");
 }))
 
-router.get("/edit/:id",wrapAsync(async(req,res)=>{
+router.get("/edit/:id",isLoggedIn,wrapAsync(async(req,res)=>{
     let {id} = req.params;
     let data =await Listing.findById(id);
     if(!data){
@@ -51,7 +52,7 @@ router.get("/edit/:id",wrapAsync(async(req,res)=>{
     res.render("listing/edit.ejs",{data})
 }));
 
-router.put("/edit/:id",wrapAsync(async(req,res)=>{
+router.put("/edit/:id",isLoggedIn,wrapAsync(async(req,res)=>{
     if(!req.body.listing){
         throw new expressError(400,"Please add valid data!");
     }
@@ -62,7 +63,7 @@ router.put("/edit/:id",wrapAsync(async(req,res)=>{
 }));
 
 
-router.delete("/delete/:id",wrapAsync(async (req,res)=>{
+router.delete("/delete/:id",isLoggedIn,wrapAsync(async (req,res)=>{
     let {id} = req.params;
     let deleteListing = await Listing.findByIdAndDelete(id);
     req.flash("sucess","Villa has been Deleted!");

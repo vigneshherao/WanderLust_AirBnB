@@ -40,6 +40,16 @@ router.post('/login',
   });
 
 
+  router.get("/logout",(req,res,next)=>{
+    req.logout((err)=>{
+      if(err){
+        next(err);
+      }
+
+      req.flash("sucess","logged out sucessfully!");
+      res.redirect("/listing");
+    })
+  })
 
 
 module.exports = router;
