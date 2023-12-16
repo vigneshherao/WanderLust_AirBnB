@@ -80,6 +80,7 @@ nav{
     background-color: white;
     display: flex;
     align-items: center;
+    padding-right: 50px;
 }
 .user-icon{
     display: flex;
