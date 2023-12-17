@@ -26,6 +26,7 @@
           <p style="color: tomato; display: inline-block">
             <%=data.location %> , <%= data.country %>
           </p>
+          <hr />
           <div class="col-12 card-text">
             <p><%=data.description %></p>
             <p>
@@ -49,10 +50,6 @@
               picturesque surrounding perfectly blends into the elegant villa,
               making it one of the most beautiful and relaxing vacations of your
               lifetime. <br />
-              3. The coast of Surathkal is famous for its coastal cuisine, the
-              surrounding area is swamped with delicious restaurants. One can
-              relish on the authentic local cuisine during the day and spend the
-              night overlooking the pristine beach <br />
             </p>
           </div>
         </div>
@@ -77,7 +74,10 @@
       <% } %>
 
       <div class="col-12">
-        <hr />
+        <% if(isLogged) {%>
+          <hr />
+          <% } %>
+        <% if(isLogged) { %>
         <form
           action="/listings/<%=data._id%>/reviews"
           method="post"
@@ -110,22 +110,65 @@
             <button class="btn btn-dark" type="submit">Submit</button>
           </div>
         </form>
+        <% if(data.reviews.length==0) { %>
+          <hr>
+        <% } %>
+        <% } %> <% if(data.reviews.length==0) { %>
+        <h4>No Reviews (yet)</h4>
+        <p>This host added by the <%= data.owner.username%></p>
+        <% } else { %>
+          <br>
+        <hr>
+        <div class="reviews-for">
+          <div class="overall-review">
+            <p>Overall Rating</p>
+            <p id="overall">4.7</p>
+          </div>
+          <div class="first-reviewfor">
+            <p>Accuracy</p>
+            <p>4.7</p>
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <div class="first-reviewfor">
+            <p>Check-in</p>
+            <p>4.1</p>
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <div class="first-reviewfor">
+            <p>Cleanliness</p>
+            <p>4.0</p>
+            <i class="fa-solid fa-spray-can-sparkles"></i>
+          </div>
+          <div class="first-reviewfor">
+            <p>Communication</p>
+            <p>3.7</p>
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div class="first-reviewfor">
+            <p>Location</p>
+            <p>4.7</p>
+            <i class="fa-solid fa-location-arrow"></i>
+          </div>
+        </div>
+        <% } %>
         <hr />
         <div class="reviews-cards col-12">
           <div class="row">
             <% for(reviews of data.reviews) { %>
-            <div class="col-sm-4">
+            <div class="col-sm-4 cards-reviews">
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title">
-                    Vignesh H E &nbsp;
+                   <%=reviews.author.username%>&nbsp;
                     <span
                       ><i class="fa-sharp fa-solid fa-star"
                         >&nbsp;<%=reviews.rating%></i
                       ></span
                     >
                   </h6>
+                  <br>
                   <p class="card-text"><%=reviews.comments%></p>
+                  <% if(isLogged && isLogged._id.equals(reviews.author._id)) {%>
                   <form
                     action="/listings/<%=data._id %>/reviews/<%=reviews._id %>?_method=DELETE"
                     method="post"
@@ -137,10 +180,38 @@
                       delete
                     </button>
                   </form>
+                  <% } %>
                 </div>
               </div>
             </div>
             <% } %>
+          </div>
+        </div>
+        <% if(!data.reviews.length==0) { %>
+        <hr />
+        <% } %>
+        <div class="col-12 needtoFollow">
+          <div class="row">
+            <div class="col-sm-4 house-rule">
+              <h6>House Rules</h6>
+              <p>Check-in: 2:00 pm – 7:00 pm</p>
+              <p>Checkout before 11:00 am</p>
+              <p>8 guests maximum</p>
+            </div>
+            <div class="col-sm-4 safty-property">
+              <h6>Saftey & property</h6>
+              <p>No carbon monoxide alarm</p>
+              <p>No smoke alarm</p>
+              <p>Security camera/recording device</p>
+            </div>
+            <div class="col-sm-4 cancellation">
+              <h6>Cancellation policy</h6>
+              <p>This reservation is non-refundable.</p>
+              <p>
+                Review the Host’s full cancellation policy which applies even if
+                you cancel for illness or disruptions caused by COVID-19.
+              </p>
+            </div>
           </div>
         </div>
       </div>

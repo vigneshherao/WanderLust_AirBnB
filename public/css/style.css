@@ -187,3 +187,53 @@ nav{
     color:rgb(255, 223, 0);
     font-size: 13px;
 }
+.cards-reviews{
+    border: 0.2px solid rgb(227, 227, 227);
+}
+
+
+/* ---------------------things to follow----------------------- */
+
+
+.needtoFollow h6{
+    font-weight: 700;
+    line-height: 18px;
+}
+.reviews-for{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.first-reviewfor{
+    width: 154px;
+    height: 106px;
+    margin: 10px;
+    border-right: 0.2px solid rgb(212, 212, 212);
+    text-align: center;
+}
+.first-reviewfor i{
+   font-size: 30px;
+}
+.first-reviewfor p{
+    font-size: 12px;
+ }
+.overall-review{
+    width: 154px;
+    height: 106px;
+    margin: 10px;
+    text-align: center;
+    border-right: 3px solid rgb(0, 0, 0);
+}
+.overall-review #overall{
+    font-size: 35px;
+    font-weight: 700;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .reviews-for {
+      display: none;
+    }
+  }
