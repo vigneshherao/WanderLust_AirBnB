@@ -6,22 +6,19 @@ const expressError = require("../utils/expressError.js");
 const { isLoggedIn, serverValidate } = require("../middleware/isLoggedIn.js");
 const listingController = require("../controller/listingController.js");
 
-router.get("/", wrapAsync(listingController.index));
+router
+  .route("/")
+  .get(wrapAsync(listingController.index))
+  .post(isLoggedIn, serverValidate, wrapAsync(listingController.createListing));
 
 router.get("/show/:id", wrapAsync(listingController.renderListing));
 
+router
+  .route("/edit/:id")
+  .get(isLoggedIn, wrapAsync(listingController.fetchListing))
+  .put(isLoggedIn, wrapAsync(listingController.updateListing));
+
 router.get("/new", isLoggedIn, listingController.renderNewForm);
-
-router.post(
-  "/",
-  isLoggedIn,
-  serverValidate,
-  wrapAsync(listingController.createListing)
-);
-
-router.get("/edit/:id", isLoggedIn, wrapAsync(listingController.fetchListing));
-
-router.put("/edit/:id", isLoggedIn, wrapAsync(listingController.updateListing));
 
 router.delete(
   "/delete/:id",
