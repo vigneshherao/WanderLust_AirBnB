@@ -83,20 +83,27 @@
           class="needs-validation"
           novalidate
         >
-          <div class="review col-10 offset-1">
-            <label for="review" class="form-label">Leave a Review 1-5</label>
-            <input
-              type="range"
-              class="form-range"
-              min="1"
-              max="5"
-              id="rating"
-              name="review[rating]"
-            />
+          <div class="review col-12 offset-1">
+            <fieldset class="starability-grow">
+              <legend>Your Rating:</legend>
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
           </div>
+          <br>
           <div class="review col-10 offset-1">
             <label for="comments" class="form-label">Comments</label>
             <textarea
+              placeholder="Nice place to visit...!"
               required
               name="review[comments]"
               id="comments"
@@ -159,11 +166,8 @@
                 <div class="card-body">
                   <h6 class="card-title">
                    <%=reviews.author.username%>&nbsp;
-                    <span
-                      ><i class="fa-sharp fa-solid fa-star"
-                        >&nbsp;<%=reviews.rating%></i
-                      ></span
-                    >
+                    <p class="starability-result" data-rating="<%=reviews.rating %>">
+                    </p>
                   </h6>
                   <br>
                   <p class="card-text"><%=reviews.comments%></p>
