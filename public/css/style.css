@@ -190,6 +190,9 @@ nav{
 .cards-reviews{
     border: 0.2px solid rgb(227, 227, 227);
 }
+.card-title{
+    padding-top: 20px;
+}
 
 
 /* ---------------------things to follow----------------------- */
