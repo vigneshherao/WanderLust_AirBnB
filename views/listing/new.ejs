@@ -3,7 +3,7 @@
     <br>
    <div class="row">
     <div class="col-8 offset-2">
-        <form method="post" action="/listing" novalidate class="needs-validation" >
+        <form method="post" action="/listing" novalidate class="needs-validation" enctype="multipart/form-data" >
             <div class="mb-3">
                 <label for="title" class="form-label">Enter your title</label>
                 <input type="text" required  class="form-control" name="listing[title]" placeholder="Enter villa name">
@@ -14,9 +14,16 @@
                     Title name is required.
                   </div>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="image" class="form-label">Enter your Image Link</label>
                 <input type="text" required class="form-control" name="listing[image]" placeholder="Enter image url">
+                <div class="invalid-feedback">
+                    Please add image url
+                  </div>
+            </div> -->
+            <div class="mb-3">
+                <label for="image" class="form-label">Add your Image file</label>
+                <input type="file" required multiple="multiple" class="form-control" name="listing[image]" placeholder="Enter image url">
                 <div class="invalid-feedback">
                     Please add image url
                   </div>

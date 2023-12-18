@@ -1,4 +1,5 @@
 const Listing = require("../models/listing");
+const expressError = require("../utils/expressError.js");
 
 module.exports.index = async (req, res) => {
     let datas = await Listing.find();
@@ -22,8 +23,11 @@ module.exports.renderNewForm =  (req, res) => {
   };
 
 module.exports.createListing = async (req, res, next) => {
+    let url = req.file.path;
+    let filename = req.file.filename;
     let listing = new Listing(req.body.listing);
     listing.owner = req.user._id;
+    listing.image = {url,filename};
     await listing.save();
     req.flash("sucess", "New villa has be created");
     res.redirect("/listing");
@@ -54,7 +58,7 @@ module.exports.updateListing = async (req, res) => {
 
 module.exports.deleteListing = async (req, res) => {
     let { id } = req.params;
-    let deleteListing = await Listing.findByIdAndDelete(id);
+    await Listing.findByIdAndDelete(id);
     req.flash("sucess", "Villa has been Deleted!");
     res.redirect("/listing");
   };

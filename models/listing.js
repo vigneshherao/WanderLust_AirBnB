@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review.js");
+const { string } = require("joi");
 const listingSchema = new Schema({
     title:{
         type:String,
@@ -9,9 +10,8 @@ const listingSchema = new Schema({
     },
     description:String,
     image:{
-        type:String,
-        default:"https://unsplash.com/photos/coconut-palm-trees-in-hotel-lobby-_dS27XGgRyQ",
-        set: (v)=> v ===""? "https://unsplash.com/photos/coconut-palm-trees-in-hotel-lobby-_dS27XGgRyQ":v,
+        url:String,
+        filename:String,
     },
     price:Number,
     location:String,
