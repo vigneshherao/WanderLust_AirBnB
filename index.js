@@ -14,10 +14,12 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStratagy = require("passport-local");
 const User = require("./models/user.js");
+
 
 app.engine("ejs", engine);
 app.set("view engine", "ejs");
@@ -26,9 +28,28 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
+
+// "mongodb://127.0.0.1:27017/wanderlust"
+const dbUrl = process.env.atlasDb_Url;
+
+
+const store = MongoStore.create({
+  mongoUrl:dbUrl,
+  crypto:{
+    secret:process.env.secret,
+  },
+  touchAfter:24 * 3600,
+
+});
+
+store.on("error",()=>{
+  console.log("error in mongo store");
+})
+
 app.use(
   session({
-    secret: "keyboardmouse",
+    store,
+    secret: process.env.secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -39,6 +60,9 @@ app.use(
   })
 );
 
+
+
+
 app.use(flash());
 
 app.use(passport.initialize());
@@ -47,8 +71,9 @@ passport.use(new LocalStratagy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+  await mongoose.connect(dbUrl);
 }
 
 main().then(() => {
