@@ -1,29 +1,31 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 <body>
-    <div class="row">
-        <h2>ALL VILLAS HERE</h2> 
-    </div>
-    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 row-cols-sm-1">
-        <% for(data of datas){ %>
-           <a href="listing/show/<%=data._id%>" class="post-link">
-            <div class="card col">
-                <img class="card-img-top" src="<%= data.image.url %>" alt="Card image cap"  style="height: 19.1rem;">
-                <div class="card-img-overlay">
-                    <i class="fa-regular fa-heart fa-fade" style="color: #ff1f1f;"></i>
-                </div>
-                <div class="card-body">
-                  <p class="card-text">
-                    <b><%= data.title %></b> <br>
-                    <%= data.location %> <br>
-                    <% if (data.price !== null && data.price !== undefined) { %>
-                        &#8377; <%= data.price.toLocaleString('en-IN') %> / night
-                    <% } else { %>
-                        Price not available
-                    <% } %>
-                </p>
-                </div>
-              </div>
-           </a>
-         <% } %>
-    </div>
+  <%- include("../includes/filter.ejs") %>
+  <%- include("../includes/mobiletop.ejs") %>
+  <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 row-cols-sm-1 mt-3">
+    <% for(data of datas){ %>
+    <a href="listing/show/<%=data._id%>" class="post-link">
+      <div class="card col">
+        <img
+          class="card-img-top"
+          src="<%= data.image.url %>"
+          alt="Card image cap"
+          style="height: 19.1rem"
+        />
+        <div class="card-img-overlay">
+          <i class="fa-regular fa-heart fa-fade" style="color: #ff1f1f"></i>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <b><%= data.title %></b> <br />
+            <%= data.location %> <br />
+            <% if (data.price !== null && data.price !== undefined) { %> &#8377;
+            <%= data.price.toLocaleString('en-IN') %> / night <% } else { %>
+            Price not available <% } %>
+          </p>
+        </div>
+      </div>
+    </a>
+    <% } %>
+  </div>
 </body>
