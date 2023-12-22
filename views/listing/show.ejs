@@ -1,4 +1,8 @@
 <% layout("/layouts/boilerplate.ejs") -%>
+<script>
+  let mapToken = "<%=process.env.map_Token%>";
+  const locationMaker = <%-JSON.stringify(data.mapCoordinates.coordinates)%>;
+</script>
 <body>
   <a href="/listing" class="back-btn"
     ><i class="fa-solid fa-arrow-left"></i>&nbsp Back
@@ -17,7 +21,7 @@
       <img src="<%=data.image.url %>" class="card-img-top show-img" alt="..." />
       <div class="card-body">
         <div class="card-text">
-          <p>Owned By: <%=data.owner.username%></p>
+          <p id="owner">Owned By: <%=data.owner.username%></p>
           <b><%= data.title %></b><br />
           <% if (data.price !==null && data.price !==undefined) { %> &#8377; <%=
           data.price.toLocaleString('en-IN') %> / night <% } else { %> Price not
@@ -30,12 +34,12 @@
           <div class="col-12 card-text">
             <p><%=data.description %></p>
             <p>
-              <b>About this space</b><br />
+              <b id="head-para">About this space</b><br />
               The elegant 4 bedrooms beach house is located on the coasts of
               Mangalore and equipped with luxurious interiors and sprawling
               lawn, a perfect gateway from the hustle and bustle of the city.
               <br />
-              <b> Reasons, why the place is a, must-visit:</b>
+              <b id="head-para"> Reasons, why the place is a, must-visit:</b>
               <br />
               1. The bright, plush and exclusive property is a perfect gateway
               with your family and friends from the maddening city life. The
@@ -71,6 +75,30 @@
         </form>
       </div>
       <% } %>
+      <span id="offer-head">What this place Offers</span>
+      <div class="offers">
+        <div class="offer-set">
+          <p><i class="fa-solid fa-mountain-sun"></i>&nbsp; Valley View</p>
+          <p><i class="fa-solid fa-tv"></i> &nbsp;Tv</p>
+          <p><i class="fa-solid fa-cash-register"></i> &nbsp;Dryer</p>
+          <p><i class="fa-solid fa-square-parking"></i>Garden</p>
+          <p><i class="fa-solid fa-music"></i>Sound Sytem</p>
+        </div>
+        <div class="offer-set">
+          <p><i class="fa-solid fa-mountain-sun"></i>&nbsp; Valley View</p>
+          <p><i class="fa-solid fa-tv"></i> &nbsp;Tv</p>
+          <p><i class="fa-solid fa-cash-register"></i> &nbsp;Dryer</p>
+          <p><i class="fa-solid fa-square-parking"></i>Garden</p>
+          <p><i class="fa-solid fa-music"></i>Sound Sytem</p>
+        </div>
+        <div class="offer-set">
+          <p><i class="fa-solid fa-mountain-sun"></i>&nbsp; Valley View</p>
+          <p><i class="fa-solid fa-tv"></i> &nbsp;Tv</p>
+          <p><i class="fa-solid fa-cash-register"></i> &nbsp;Dryer</p>
+          <p><i class="fa-solid fa-square-parking"></i>Garden</p>
+          <p><i class="fa-solid fa-music"></i>Sound Sytem</p>
+        </div>
+      </div>
 
       <div class="col-12">
         <% if(isLogged) {%>
@@ -217,7 +245,9 @@
             </div>
           </div>
         </div>
+        <div id='map' style='width: 100%; height: 500px; margin-top: 20px;'></div>
       </div>
     </div>
   </div>
 </body>
+<script src="/js/map.js"></script>

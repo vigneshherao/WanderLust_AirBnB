@@ -1,3 +1,8 @@
+*{
+    font-family: 'Darker Grotesque', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
 body{
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     display: flex;
@@ -134,8 +139,14 @@ nav{
     text-decoration: none;
 
 }
-
-
+.card-text #owner{
+    font-size: 12px;
+}
+.card-text p{
+    margin-top: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+}
 /* <------------------card  effect-----------> */
 
 .card-img-overlay:hover{
@@ -171,7 +182,11 @@ nav{
     margin-right: 10px;
 }
 .show-img{
-    height: 30vh;
+        border-radius: 1rem !important;
+        height: 350px !important;
+        width: 100% !important;
+        object-fit: cover;
+    
 }
 .card-text p{
     font-style: italic;
@@ -232,11 +247,49 @@ nav{
     font-weight: 700;
 }
 
+/* .card-text b{
+    color: rgb(59, 59, 59) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600 !important;
+    font-size: 2.125rem !important;
+} */
+#head-para{
+    color: rgb(59, 59, 59) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600 !important;
+    font-size: 1.125rem !important;
+}
+.offers{
+    display: flex;
+    justify-content: space-between;
+}
+.offer-set{
+    margin: 0.5rem;
+    
 
+}
 
+.offer-set p{
+    font-weight: 100;
+    padding: 5px;
+}
+#offer-head{
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 15px;
+
+}
 
 @media only screen and (max-width: 600px) {
     .reviews-for {
       display: none;
+    }
+    .card-img-top{
+        border-radius: 1rem !important;
+        width: 100% !important;
+        object-fit: cover;
+    }
+    .card-text p{
+        display: none;
     }
   }
