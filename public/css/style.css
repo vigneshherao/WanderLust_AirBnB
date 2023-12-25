@@ -363,4 +363,7 @@ footer{
     padding: 0.3em 3rem 0.5rem 3rem;
     font-size: 1rem;
   }
+  footer{
+    margin-top: 120px;
+  }
 }
