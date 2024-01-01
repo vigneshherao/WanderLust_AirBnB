@@ -5,6 +5,10 @@ Welcome to the WanderLust AirBnB repository! This project is designed to [provid
 
 ![New Project (1)](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/206923de-a738-4592-beb0-3c05659cba92)
 
+⭐ Responsive Screen
+
+![Screenshot 2024-01-01 110839](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/a72a111d-70e9-4fd0-b0fa-4e95a3097757)
+
 ExploreVilla: Your Airbnb Wanderlust Clone! 🌍
 Welcome to the ExploreVilla repository! This project is a feature-rich Airbnb Wanderlust Clone that allows you to effortlessly build and deploy your own villa booking platform. With our low-code framework, you can enjoy a drag-and-drop frontend builder for stunning villa views. ExploreVilla seamlessly integrates databases like PostgreSQL and MongoDB, API endpoints, and popular SaaS tools such as Stripe and Slack. Discover, review, and check villa locations effortlessly with ExploreVilla!
 
@@ -52,8 +56,6 @@ Push your changes to your forked repository.
 Submit a pull request to the original repository.
 Please read the code of conduct and contribution guidelines before contributing.
 
-License
-This project is licensed under the [License Name] - see the LICENSE file for details.
 
 Contact
 If you have any questions or concerns, feel free to reach out to vigneshfornavy@gmail.com.
