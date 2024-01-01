@@ -18,16 +18,16 @@ npm (>= version x.x.x)
 Prerequisites
 Clone the repository:
 
-![image](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/2f5b172f-b473-472a-a44e-bff3dbeacf93)
+![image](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/1f2d0c02-e652-42a6-bfda-d276298c8daa)
 
 
-git clone https://github.com/your-username/ExploreVilla.git
+
+git clone https://github.com/vigneshherao/WanderLust_AirBnB.git)
 Change into the project's directory:
 
 ![image](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/15629c27-b92a-49d4-a08e-9189871d96ba)
 
 
-cd ExploreVilla
 Install the project dependencies:
 
 ![image](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/985b156a-f2b8-47be-8e54-164c2e3a7695)
