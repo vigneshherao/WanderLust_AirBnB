@@ -7,10 +7,8 @@ Welcome to the WanderLust AirBnB repository! This project is designed to [provid
 
 ⭐ Responsive Screen WanderLust AirBnB
 
-![image](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/0e7045a8-6c1e-4848-ad7e-8f747504a12f)
-![Screenshot 2024-01-01 110839](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/a72a111d-70e9-4fd0-b0fa-4e95a3097757)
-![image](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/5a0c2f7d-b5b8-4218-9803-5f0b09849b58)
-![image](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/fe1bb0e4-b228-4980-ae66-32bb8ad3d178)
+![New Project (2)](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/26049e7c-a839-43a0-bb64-ba00f77b83f1)
+
 
 
 
