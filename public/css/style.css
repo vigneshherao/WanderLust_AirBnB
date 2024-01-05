@@ -57,6 +57,7 @@ nav {
   margin-left: 20px;
 }
 footer{
+  margin-top: 10%;
   width: 100%;
   height: 369px;
 }
@@ -345,6 +346,7 @@ footer{
     border: none;
   }
   .search-bar{
+    display: none;
     margin-top: 5%;
     padding: 0 10%;
   }
