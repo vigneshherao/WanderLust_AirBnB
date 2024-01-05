@@ -345,6 +345,7 @@ footer{
     border: none;
   }
   .search-bar{
+    display:none,
     margin-top: 5%;
     padding: 0 10%;
   }
