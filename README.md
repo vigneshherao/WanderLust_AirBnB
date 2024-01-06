@@ -1,5 +1,5 @@
 WanderLust AirBnB
-Welcome to the WanderLust AirBnB repository! This project is designed to [provide a brief description of the project]. Follow the steps below to get started.
+Welcome to the WanderLust AirBnB repository! This project is designed project from scratch. Follow the steps below to get started.
 
 🌟 ExploreVilla: Your Airbnb Wanderlust Clone! 🌍 Effortlessly build and deploy with our low-code framework. Drag-and-drop frontend builder for stunning villa views. Integrate databases (PostgreSQL, MongoDB), API endpoints, and SaaS tools (Stripe, Slack) seamlessly. Discover, review, and check villa locations effortlessly! ⭐ GitHub star appreciated for ongoing innovation! 🏡 #ExploreVilla #WanderlustClone
 
