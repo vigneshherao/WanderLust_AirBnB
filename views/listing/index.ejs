@@ -22,10 +22,26 @@
             <% if (data.price !== null && data.price !== undefined) { %> &#8377;
             <%= data.price.toLocaleString('en-IN') %> / night <% } else { %>
             Price not available <% } %>
+            <i class="gstLabel" style="color: #ff1f1f; display: none;">+ 10% GST</i>
           </p>
         </div>
       </div>
     </a>
     <% } %>
   </div>
+  <script>
+    let clickBtn = document.getElementById("flexSwitchCheckDefault")
+     clickBtn.addEventListener("click",()=>{
+      let label = document.getElementsByClassName("gstLabel");
+      for(lbl of label){
+        if(lbl.style.display!="inline"){
+          lbl.style.display = "inline";
+        }
+        else{
+          lbl.style.display = "none";
+        }
+      }
+     })
+
+  </script>
 </body>
