@@ -49,6 +49,11 @@ To start the ExploreVilla application, run the following command:
 
 ![image](https://github.com/vigneshherao/WanderLust_AirBnB/assets/70132638/c22ae721-db52-464d-9c2a-94cafed357ff)
 
+
+
+
+If you are encountering with .env file -> I have added sample env file please check that once!
+
 node index.js
 Access the application by navigating to http://localhost:3000 in your web browser.
 
